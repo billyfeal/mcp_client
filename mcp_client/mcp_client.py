@@ -5,6 +5,12 @@ from typing import Any, Awaitable, Callable, Optional
 from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
 
+from mcp_client import chat
+from mcp_client.handlers import OpenAIQueryHandler
+from dotenv import load_dotenv
+
+load_dotenv()  # load environment variables from .env
+
 class MCPClient:
     """MCP client to interact with MCP server.
 
@@ -84,3 +90,11 @@ class MCPClient:
     async def cleanup(self):
         """Clean up resources"""
         await self.exit_stack.aclose()
+
+    async def run_chat(self) -> None:
+        """Start interactive chat with MCP server using OpenAI."""
+        try:
+            handler = OpenAIQueryHandler(self.session)
+            await chat.run_chat(handler)
+        except RuntimeError as e:
+            print(e)

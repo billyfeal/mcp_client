@@ -15,6 +15,8 @@ async def main() -> None:
         await client.connect_to_server()
         if args.members:
             await client.list_all_members()
+        elif args.chat:
+                await client.run_chat()
     except RuntimeError as e:
         print(e)
     finally:

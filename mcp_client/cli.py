@@ -15,4 +15,9 @@ def parse_args():
         action="store_true",
         help="list the MCP server's tools, prompts, and resources",
     )
+    group.add_argument(
+        "--chat",
+        action="store_true",
+        help="start an AI-powered chat with MCP server integration",
+    )
     return parser.parse_args()
