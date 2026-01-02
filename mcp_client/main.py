@@ -22,5 +22,12 @@ async def main() -> None:
     finally:
         await client.cleanup()
 
+# ...
+
+def cli_main():
+    """Entry point for the mcp-client CLI app."""
+    asyncio.run(main())
+
+
 if __name__ == "__main__":
     asyncio.run(main())
